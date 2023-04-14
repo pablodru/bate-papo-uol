@@ -1,5 +1,7 @@
 axios.defaults.headers.common["Authorization"] = "w3uNiZPkMcxfQY64IPy8ry40";
 
+let informedName = '';
+
 //mensagem:
 /*`<div class="message">
 <p class="time">${time}</p>
@@ -10,17 +12,39 @@ axios.defaults.headers.common["Authorization"] = "w3uNiZPkMcxfQY64IPy8ry40";
 </div>`*/
 // caso seja entrada ou saída basta zerar o to e text
 
+function errorSend () {
+  alert('Erro ao enviar sua mensagem');
+  window.location.reload();
+}
+
+function sendMessage() {
+  const input = document.querySelector('input');
+  const message = input.value;
+
+  const objMessage = {
+    from: informedName,
+    to: "todos",
+    text: message,
+    type: "message"
+  }
+  
+  const post = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objMessage)
+
+  post.then(getMessages);
+  post.catch(errorSend)
+}
+
 function renderMessages(response) {
   const dataMessage = response.data;
   const main = document.querySelector('.main')
 
-  console.log(dataMessage.text)
+  main.innerHTML = '';
 
   for (let i = 0; i < dataMessage.length; i++) {
 
     let forMessage = dataMessage[i]
 
-    main.innerHTML +=`<div class="message">
+    main.innerHTML +=`<div class="message" data-test="message">
         <p class="time">${forMessage.time}</p>
         <p class="name">${forMessage.from}</p>
         <p class="type-message">${forMessage.type}</p>
@@ -50,7 +74,7 @@ function usedName() {
   getName();
 }
 
-function sendName(informedName) {
+function sendName() {
   const objName = {
     name: informedName,
   };
@@ -65,12 +89,19 @@ function sendName(informedName) {
   getMessages();
 }
 
-function getName() {
-  const informedName = prompt("Qual seu nome?");
+function getName(){
+  informedName = prompt("Qual seu nome?");
 
-  sendName(informedName);
+  sendName()
 }
 
-getName();
+function sendStatus() {
+  const status = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', {name:informedName});
+  status.then(enter);
+}
 
-//console.log(setInterval(sendName,5000))
+getName()
+
+setInterval(getMessages, 3000);
+
+setInterval(sendStatus,5000)

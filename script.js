@@ -67,7 +67,9 @@ function getMessages() {
   promise.catch(errorMessages);
 }
 
-function enter() {}
+function enter() {
+  control = true;
+}
 
 function usedName() {
   alert("Este nome já está em uso");
@@ -92,8 +94,6 @@ function sendName() {
 
 function getName(){
   informedName = prompt("Qual seu nome?");
-
-  control = true;
 
   sendName()
 }

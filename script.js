@@ -28,8 +28,10 @@ function sendMessage() {
 
 function enterMessage () {
   const messageInput = document.querySelector('.footer input');
+  const loginInput = document.querySelector('.login input');
 
   const sendButton = document.querySelector('.footer ion-icon');
+  const sendLogin = document.querySelector('.login-box div')
 
   messageInput.addEventListener('keydown', function(event) {
   if (event.keyCode === 13) {
@@ -37,6 +39,13 @@ function enterMessage () {
     sendButton.click();
   }
   })
+
+  loginInput.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      sendLogin.click();
+    }
+    })
 }
 
 function renderMessages(response) {
@@ -91,7 +100,7 @@ function enter() {
 function usedName() {
   alert("Este nome já está em uso");
 
-  getName();
+  window.location.reload();
 }
 
 function sendName() {

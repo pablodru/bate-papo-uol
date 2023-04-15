@@ -193,13 +193,14 @@
   height:45px;
   background-color:#E7E7E7;
   border-radius:9px;
+  cursor:pointer;
 
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
-.login div p {
+.login p {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;

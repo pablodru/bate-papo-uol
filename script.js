@@ -1,7 +1,6 @@
 axios.defaults.headers.common["Authorization"] = "w3uNiZPkMcxfQY64IPy8ry40";
 
 let informedName = '';
-let control = false;
 
 function errorSend () {
   alert('Erro ao enviar sua mensagem');
@@ -9,8 +8,8 @@ function errorSend () {
 }
 
 function sendMessage() {
-  const input = document.querySelector('.footer input');
-  const message = input.value;
+  const inputMessage = document.querySelector('.footer input');
+  const message = inputMessage.value;
 
   const objMessage = {
     from: informedName,
@@ -24,7 +23,7 @@ function sendMessage() {
   post.then(getMessages);
   post.catch(errorSend);
 
-  input.value = '';
+  inputMessage.value = '';
 }
 
 function enterMessage () {
@@ -72,7 +71,17 @@ function getMessages() {
   promise.catch(errorMessages);
 }
 
+function changeScreen() {
+  const container = document.querySelector('.container');
+  const loginScreen = document.querySelector('.login');
+
+  container.classList.remove('hidden');
+  loginScreen.classList.add('hidden');
+}
+
 function enter() {
+  changeScreen();
+
   setInterval(getMessages, 3000);
   setInterval(sendStatus,5000);
 
@@ -98,17 +107,20 @@ function sendName() {
   name.catch(usedName);
 }
 
-function getName(){
-  informedName = prompt("Qual seu nome?");
-
-  sendName();
-}
-
 function sendStatus() {
   const status = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', {name:informedName});
   status.then();
 }
 
-getName();
+function login() {
+  const inputLogin = document.querySelector('.login input');
+  informedName = inputLogin.value;
+
+  const button = document.querySelector('.login-box div');
+
+  if(informedName.length>0){
+    sendName();
+  }
+}
 
 enterMessage();

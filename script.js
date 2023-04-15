@@ -3,23 +3,13 @@ axios.defaults.headers.common["Authorization"] = "w3uNiZPkMcxfQY64IPy8ry40";
 let informedName = '';
 let control = false;
 
-//mensagem:
-/*`<div class="message">
-<p class="time">${time}</p>
-<p class="name">${from}</p>
-<p class="type-message">${typeMessage}</p>
-<p class="name">${to}:</p>
-<p class="text"> ${text}</p>
-</div>`*/
-// caso seja entrada ou saída basta zerar o to e text
-
 function errorSend () {
   alert('Erro ao enviar sua mensagem');
   window.location.reload();
 }
 
 function sendMessage() {
-  const input = document.querySelector('input');
+  const input = document.querySelector('.footer input');
   const message = input.value;
 
   const objMessage = {
@@ -32,7 +22,22 @@ function sendMessage() {
   const post = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objMessage)
 
   post.then(getMessages);
-  post.catch(errorSend)
+  post.catch(errorSend);
+
+  input.value = '';
+}
+
+function enterMessage () {
+  const messageInput = document.querySelector('.footer input');
+
+  const sendButton = document.querySelector('.footer ion-icon');
+
+  messageInput.addEventListener('keydown', function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    sendButton.click();
+  }
+  })
 }
 
 function renderMessages(response) {
@@ -68,7 +73,8 @@ function getMessages() {
 }
 
 function enter() {
-  control = true;
+  control=true;
+  getMessages();
 }
 
 function usedName() {
@@ -88,26 +94,24 @@ function sendName() {
   );
   name.then(enter);
   name.catch(usedName);
-
-  getMessages();
 }
 
 function getName(){
   informedName = prompt("Qual seu nome?");
 
-  sendName()
+  sendName();
 }
 
 function sendStatus() {
   const status = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', {name:informedName});
-  status.then(enter);
+  status.then();
 }
 
-getName()
+getName();
 
-if(control){
+enterMessage();
 
+if (control){
   setInterval(getMessages, 3000);
-
-  setInterval(sendStatus,5000)
+  setInterval(sendStatus,5000);
 }

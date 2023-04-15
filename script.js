@@ -1,6 +1,7 @@
 axios.defaults.headers.common["Authorization"] = "w3uNiZPkMcxfQY64IPy8ry40";
 
 let informedName = '';
+let control = false;
 
 //mensagem:
 /*`<div class="message">
@@ -92,6 +93,8 @@ function sendName() {
 function getName(){
   informedName = prompt("Qual seu nome?");
 
+  control = true;
+
   sendName()
 }
 
@@ -102,6 +105,9 @@ function sendStatus() {
 
 getName()
 
-setInterval(getMessages, 3000);
+if(control){
 
-setInterval(sendStatus,5000)
+  setInterval(getMessages, 3000);
+
+  setInterval(sendStatus,5000)
+}

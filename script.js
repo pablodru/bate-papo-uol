@@ -73,7 +73,9 @@ function getMessages() {
 }
 
 function enter() {
-  control=true;
+  setInterval(getMessages, 3000);
+  setInterval(sendStatus,5000);
+
   getMessages();
 }
 
@@ -110,8 +112,3 @@ function sendStatus() {
 getName();
 
 enterMessage();
-
-if (control){
-  setInterval(getMessages, 3000);
-  setInterval(sendStatus,5000);
-}

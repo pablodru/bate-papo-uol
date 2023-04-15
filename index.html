@@ -2,7 +2,10 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Bate-papo UOL</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -14,19 +17,27 @@
     />
   </head>
   <body>
-    <div class="header">
-      <img src="img/logo 1.png" alt="logo uol" />
-      <ion-icon name="people-sharp"></ion-icon>
-    </div>
-    <div class="main">
-
-    </div>
-    <div class="footer">
-      <input type="text" placeholder="Escreva aqui..." data-test="input-message"/>
-      <ion-icon onclick="sendMessage()" name="paper-plane-outline" data-test="send-message"></ion-icon>
+    <div class="container">
+      <div class="header">
+        <img src="img/logo 1.png" alt="logo uol" />
+        <ion-icon name="people-sharp"></ion-icon>
+      </div>
+      <div class="main"></div>
+      <div class="footer">
+        <input
+          type="text"
+          placeholder="Escreva aqui..."
+          data-test="input-message"
+        />
+        <ion-icon
+          onclick="sendMessage()"
+          name="paper-plane-outline"
+          data-test="send-message"
+        ></ion-icon>
+      </div>
     </div>
     <div class="login hidden" onclick="login()">
-      <img src="img/logo 1.png" alt="logo uol">
+      <img src="img/logo 1.png" alt="logo uol" />
       <div class="login-box">
         <input type="text" placeholder="Digite seu nome" />
         <div><p>Entrar</p></div>

@@ -54,17 +54,31 @@ function renderMessages(response) {
 
   main.innerHTML = '';
 
+  const space = " ";
+
   for (let i = 0; i < dataMessage.length; i++) {
 
     let forMessage = dataMessage[i]
 
+    if(dataMessage[i].type === "status"){
+      main.innerHTML +=`<div class="message" data-test="message">
+      <p>
+        <span class="time">${forMessage.time} &nbsp</span>
+        <span class="name">${forMessage.from} &nbsp</span>
+        <span class="text"> ${forMessage.text} &nbsp</span> </p>
+      </div>`
+    }
+
+    else if(dataMessage[i].type ==="message"){
     main.innerHTML +=`<div class="message" data-test="message">
-        <p class="time">${forMessage.time}</p>
-        <p class="name">${forMessage.from}</p>
-        <p class="type-message">${forMessage.type}</p>
-        <p class="name">${forMessage.to}:</p>
-        <p class="text"> ${forMessage.text}</p>
+      <p>
+        <span class="time">${forMessage.time} &nbsp </span>
+        <span class="name">${forMessage.from} &nbsp</span>
+        <span class="type-message">para &nbsp</span>
+        <span class="name">${forMessage.to}: &nbsp</span>
+        <span class="text"> ${forMessage.text} &nbsp</span> </p>
     </div>`;
+    }
   }
 }
 
